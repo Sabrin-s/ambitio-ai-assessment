@@ -54,16 +54,14 @@ Open your terminal, command prompt, or PowerShell, and change directories into y
 
 Bash
 cd D:\ambitio-ai-assessment
-Step 2: Install Required Dependencies
-The core engine is deliberately designed to be lightweight. It bypasses complex cloud API keys, heavy machine learning libraries, or token cost hurdles by relying entirely on the Python standard library and the Streamlit frontend framework:
 
+Step 2: Install Required Dependencies
 Bash
 pip install streamlit
-System Note: This single command installs the required UI framework. All routing, regex cleaning, coordinate vector matching, and database commits run on top of native Python engines (re, sqlite3, math), minimizing third-party dependency risks.
+pip install numpy
 
 Step 3: Launch the Pipeline Application
 Execute the primary file using Streamlit to initialize your local ecosystem and spin up the frontend dashboard:
 
-Bash
 streamlit run app.py
 
