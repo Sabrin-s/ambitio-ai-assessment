@@ -58,6 +58,7 @@ cd D:\ambitio-ai-assessment
 Step 2: Install Required Dependencies
 Bash
 pip install streamlit
+
 pip install numpy
 
 Step 3: Launch the Pipeline Application
