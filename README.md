@@ -1,5 +1,4 @@
 # ⚖️ Legal Document Workspace Engine
-### Human-in-the-Loop Processing Pipeline with Adaptive Context Optimization
 
 An intelligent, decoupled text processing and engineering pipeline designed to ingest messy legal transcripts, perform verifiable grounded retrieval, construct cited summaries, and adaptively learn formatting preferences from live human operator overrides using a localized storage memory matrix.
 
@@ -21,7 +20,9 @@ The workspace architecture is engineered around 5 highly decoupled, modular laye
 
 ## Brief Write-up of Assumptions and Trade-offs ##
 •	Assumption on Raw Document Quality: It is assumed that highly degraded physical scans or messy handwritten PDFs have been pre-processed via optical character recognition frameworks into a messy text transcript block. The pipeline's responsibility is to systematically normalize, parse, and structure this data cleanly for downstream tasks.
+
 •	Trade-off on Semantic Embeddings Execution: To ensure the system runs smoothly out of the box without external API keys, or massive deep-learning model downloads, a localized mathematical hashing engine handles vector space matching. In a live enterprise deployment, this would be replaced with an industrial index model (e.g., ChromaDB, pgvector) alongside dense embeddings (e.g., OpenAI text-embedding-3-small).
+
 •	Intent-Based Rule Learning vs. Raw Text Diffing: The system intentionally avoids standard character-by-character replacements (difflib). Text diffs fail to capture structural patterns (e.g., recognizing that capitalization changes mean an operator prefers uppercase headers globally). The pipeline assumes structural overrides follow an extractable pattern, choosing to interpret intent over raw text differences.
 
 ## Sample Input (Messy Ingested Stream) ##
@@ -39,3 +40,30 @@ After an operator modifies section titles to capital letters and updates memory 
 **1. PARTIES INVOLVED:** Ambitio AI Systems Inc. and international tech vendors LLC [Source: DOC_REF_0_segment_0].
 **2. TERM AMENDMENT:** Agreement executed on June 04, 2026 [Source: DOC_REF_0_segment_0].
 **3. LIABILITY EXPOSURE:** Total financial corporate exposure and downstream liability caps are restricted strictly to an absolute maximum of $50,000 [Source: DOC_REF_0_segment_0].
+
+## Approach and Results
+To measure system performance against the evaluation rubric, the application evaluates four core metrics:
+1.	Grounding Accuracy (Hallucination Control): Verifies that 100% of sentences inside the generated draft map to an inspectable data citation tag.
+2.	Retrieval Precision (Relevance): Evaluates whether the text segment matched contains the targeted parameters requested.
+3.	Data Ingestion Stability: Tracks structural transformations of unformatted text streams into clean string variables.
+4.	Learning Optimization Metric: Validates that formatting rules are correctly saved into the SQLite database and applied to future loops.
+
+## How to Use
+Step 1: Navigate to the Workspace Directory
+Open your terminal, command prompt, or PowerShell, and change directories into your project root folder:
+
+Bash
+cd D:\ambitio-ai-assessment
+Step 2: Install Required Dependencies
+The core engine is deliberately designed to be lightweight. It bypasses complex cloud API keys, heavy machine learning libraries, or token cost hurdles by relying entirely on the Python standard library and the Streamlit frontend framework:
+
+Bash
+pip install streamlit
+System Note: This single command installs the required UI framework. All routing, regex cleaning, coordinate vector matching, and database commits run on top of native Python engines (re, sqlite3, math), minimizing third-party dependency risks.
+
+Step 3: Launch the Pipeline Application
+Execute the primary file using Streamlit to initialize your local ecosystem and spin up the frontend dashboard:
+
+Bash
+streamlit run app.py
+
